@@ -23,10 +23,10 @@ export PATH=$CUSTOMBIN:$PATH
 $CUSTOMBIN/tfswitch -b $CUSTOMBIN/terraform
 
 echo "terraform init $TF_SPACE .."
-terraform init -backend-config="./$RS_PATH/conf/$TF_SPACE.conf"
+terraform init -backend-config="./conf/$TF_SPACE.conf"
 
 #cho "terraform destroy $TF_SPACE .."
-terraform destroy -auto-approve -no-color -var-file="./$RS_PATH/var/$TF_SPACE.tfvars"
+terraform destroy -auto-approve -no-color -var-file="./var/$TF_SPACE.tfvars"
 
 #echo "terraform apply $TF_SPACE .."
 #terraform apply -auto-approve -no-color -var-file="./var/$TF_SPACE.tfvars"
