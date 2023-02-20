@@ -29,9 +29,14 @@ pipeline {
 
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                credentialsId: "testAws",
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                                    credentialsId: "testAws",
+                                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'],
+                                azureServicePrincipal(credentialsId: 'testAzure',
+                                    subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
+                                    clientIdVariable: 'ARM_CLIENT_ID',
+                                    clientSecretVariable: 'ARM_CLIENT_SECRET',
+                                    tenantIdVariable: 'ARM_TENANT_ID')]) {
                     sh 'export ARM_ACCESS_KEY=$ARM_ACCESS_CREDS_PSW'     
                     sh 'chmod +x ./$RS_PATH/terraformmw'
                     sh './$RS_PATH/terraformmw'
