@@ -6,6 +6,7 @@ pipeline {
 
     parameters {
         string(name:'TEST_TF_SPACE', defaultValue:'default', description:'terraform workspace')
+        string(name:'TEST_RS_PATH', defaultValue:'virtualnetwork', description:'terraform workspace')
     }
 
     stages {
@@ -23,6 +24,7 @@ pipeline {
             environment { //拉取微软的远端存储密钥
                 ARM_ACCESS_CREDS = credentials('azurestoragekey') 
                 TF_SPACE = "$params.TEST_TF_SPACE"
+                RS_PATH = "$params.TEST_RS_PATH"
             }
 
             steps {
@@ -31,8 +33,8 @@ pipeline {
                 accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                 secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     sh 'export ARM_ACCESS_KEY=$ARM_ACCESS_CREDS_PSW'     
-                    sh 'chmod +x terraformmw'
-                    sh './terraformmw'
+                    sh 'chmod +x ./$RS_PATH/terraformmw'
+                    sh './$RS_PATH/terraformmw'
                 }
             }
         }
