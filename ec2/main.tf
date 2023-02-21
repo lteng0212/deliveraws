@@ -19,9 +19,6 @@ module "ec2_instance" {
   ami                    = data.aws_ami.amazon_linux.id
   availability_zone      = "eu-west-1a"
   instance_type          = "t2.micro"
-  key_name               = "user1"
-  monitoring             = true
-
 
   placement_group = aws_placement_group.web.id
   root_block_device = [
