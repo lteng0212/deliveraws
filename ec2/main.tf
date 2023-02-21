@@ -70,7 +70,6 @@ resource "aws_network_interface" "ni" {
   description = "network-${each.key}"
   subnet_id   = "subnet-08ae13a4f87cb1f6c"
   private_ips_count = 2
-  security_groups = [aws_security_group.web.id]
 }
 
 output "network_ids" {
