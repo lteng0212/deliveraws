@@ -12,7 +12,7 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "4.3.0"
 
-  for_each = toset(["one", "two"])
+  for_each = toset(["one-1", "two-1"])
 
   name = "instance-${each.key}"
 
@@ -63,7 +63,7 @@ resource "aws_placement_group" "web" {
 }
 
 resource "aws_network_interface" "ni" {
-  for_each = toset(["one", "two"])
+  for_each = toset(["one-1", "two-1"])
   description = "network-${each.key}"
   subnet_id   = "subnet-08ae13a4f87cb1f6c"
   #private_ips_count = 2
