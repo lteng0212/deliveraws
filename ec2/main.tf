@@ -34,7 +34,7 @@ module "ec2_instance" {
 
   ebs_block_device = [
     {
-      #device_name = "/dev/sdf"
+      device_name = "/dev/sdf"
       volume_type = "gp3"
       volume_size = 5
       encrypted   = true
