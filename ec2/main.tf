@@ -62,7 +62,7 @@ module "ec2_instance" {
 
 resource "aws_placement_group" "web" {
   name     = local.name
-  strategy = "cluster"
+  strategy = "partition"
 }
 
 resource "aws_network_interface" "ni" {
