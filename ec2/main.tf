@@ -66,7 +66,7 @@ resource "aws_network_interface" "ni" {
   for_each = toset(["one", "two"])
   description = "network-${each.key}"
   subnet_id   = "subnet-08ae13a4f87cb1f6c"
-  private_ips_count = 2
+  #private_ips_count = 2
 }
 
 output "network_ids" {
