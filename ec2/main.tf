@@ -88,7 +88,7 @@ data "aws_ami" "amazon_linux" {
 
 resource "aws_eip_association" "eip_assoc" {
   for_each = toset(["one-1", "two-1"])
-  nenetwork_interface_id = aws_network_interface.ni[each.key].id
+  network_interface_id = aws_network_interface.ni[each.key].id
   allocation_id = aws_eip.example[each.key].id
 }
 
