@@ -85,3 +85,14 @@ data "aws_ami" "amazon_linux" {
     values = ["amzn-ami-hvm-*-x86_64-gp2"]
   }
 }
+
+resource "aws_eip_association" "eip_assoc" {
+  for_each = toset(["one-1", "two-1"])
+  nenetwork_interface_id = aws_network_interface.ni[each.key].id
+  allocation_id = aws_eip.example[each.key].id
+}
+
+resource "aws_eip" "example" {
+  for_each = toset(["one-1", "two-1"])
+  vpc = true
+}
