@@ -86,6 +86,7 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+#公有IP
 resource "aws_eip_association" "eip_assoc" {
   for_each = toset(["one-1", "two-1"])
   network_interface_id = aws_network_interface.ni[each.key].id
